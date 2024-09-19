@@ -4,7 +4,7 @@ import Typist from 'react-typist-component';
 import { Jumbotron } from "./migration";
 
 const MainBody = React.forwardRef(
-  ({ gradient, title, message, icons }, ref) => {
+  ({ gradient, title, message, icons, resume }, ref) => {
     return (
       <Jumbotron
         fluid
@@ -38,6 +38,15 @@ const MainBody = React.forwardRef(
               </a>
             ))}
           </div>
+          <a
+            className="btn btn-outline-light btn-lg "
+            href={resume}
+            role="button"
+            aria-label="Resume"
+            style={{marginRight:'1em'}}
+          >
+            Resume
+          </a>
           <a
             className="btn btn-outline-light btn-lg "
             href="#aboutme"
