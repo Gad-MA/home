@@ -1,3 +1,6 @@
+1. Do your changes in your local repo
+2. run `npm run build`
+3. run `npm run custom-deploy`
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
