@@ -17,9 +17,10 @@ const API = "https://api.github.com";
 // const gitHubQuery = "/repos?sort=updated&direction=desc";
 // const specficQuerry = "https://api.github.com/repos/hashirshoaeb/";
 
-const Project = ({ heading, username,specfic }) => {
+const Project = ({ heading, username, length, specfic }) => {
+  const allReposAPI = `${API}/users/${username}/repos?sort=updated&direction=desc`;
   const specficReposAPI = `${API}/repos/${username}`;
-  const dummyProjectsArr = new Array(specfic.length).fill(
+  const dummyProjectsArr = new Array(length + specfic.length).fill(
     dummyProject
   );
 
@@ -28,6 +29,10 @@ const Project = ({ heading, username,specfic }) => {
   const fetchRepos = useCallback(async () => {
     let repoList = [];
     try {
+      // getting all repos
+      const response = await axios.get(allReposAPI);
+      // slicing to the length
+      repoList = [...response.data.slice(0, length)];
       // adding specified repos
       try {
         for (let repoName of specfic) {
@@ -43,7 +48,7 @@ const Project = ({ heading, username,specfic }) => {
     } catch (error) {
       console.error(error.message);
     }
-  }, [specfic, specficReposAPI]);
+  }, [allReposAPI, length, specfic, specficReposAPI]);
 
   useEffect(() => {
     fetchRepos();
